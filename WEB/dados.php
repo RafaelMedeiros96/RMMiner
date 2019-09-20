@@ -1,0 +1,149 @@
+<?php include("conexao.php"); 
+
+$consulta="SELECT * FROM termo";
+$con= $mysqli->query($consulta) or die ($mysqli->error);
+?>
+
+<!DOCTYPE html>
+
+<!-- saved from url=(0054)https://getbootstrap.com/docs/4.0/examples/dashboard/# -->
+<html lang="br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="./das_files/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./Pag_files/pricing.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="./Pag_files/translateelement.css"></head>
+
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">UENP</h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Sobre</a>
+      </nav>
+      <a class="btn btn-primary" href="index.html">Sair</a>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+			  
+			  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Filtros</span>
+              <a class="d-flex align-items-center text-muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              </a>
+            </h6>
+			  
+              <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/dashboard/#">
+                  Mais Frequentes
+                </a>
+              </li>
+         <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/dashboard/#">
+                  Menos Frequentes
+                </a>
+              </li>
+			  
+			  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Filtros dos termos</span>
+              <a class="d-flex align-items-center text-muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              </a>
+            </h6>
+			
+             <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/dashboard/#">
+                   Word List
+                </a>
+              </li>
+               <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/dashboard/#">
+                  Bigrama
+                </a>
+              </li>
+               <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/dashboard/#">
+                  Trigrama
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/dashboard/#">
+                  Quadrigrama
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+
+          <h2>Termos</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Ngram</th>
+                  <th>Frequencia</th>
+                  <th>Termo</th>
+                  <th>Relevância</th>
+                </tr>
+              </thead>
+			  <?php while($dado= $con->fetch_array()){ ?>
+              <tbody>
+			  
+                <tr>
+                  <td><?php echo $dado["conj"]; ?></td>
+                  <td><?php echo $dado["freq"]; ?></td>
+                  <td><?php echo $dado["palavra"]; ?></td>
+                  <td><input type="checkbox"></td>
+                </tr>
+                
+              </tbody>
+			  <?php } ?>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./das_files/jquery-3.2.1.slim.min.js.download" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="./das_files/popper.min.js.download"></script>
+    <script src="./das_files/bootstrap.min.js.download"></script>
+
+    <!-- Icons -->
+    <script src="./das_files/feather.min.js.download"></script>
+    <script>
+      feather.replace()
+    </script>
+
+    <!-- Graphs -->
+    <script src="./das_files/Chart.min.js.download"></script>
+
+  
+
+</body></html>
